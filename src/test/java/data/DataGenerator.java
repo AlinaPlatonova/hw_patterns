@@ -22,9 +22,13 @@ public class DataGenerator {
     }
 
     public static String generateDate(int daysFromNow) {
-        int actualDays = Math.max(daysFromNow, 3);
+        LocalDate date = LocalDate.now().plusDays(daysFromNow);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return date.format(formatter);
+    }
 
-        LocalDate date = LocalDate.now().plusDays(actualDays);
+    public static String generateInvalidDate(int daysAgo) {
+        LocalDate date = LocalDate.now().minusDays(daysAgo);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         return date.format(formatter);
     }
